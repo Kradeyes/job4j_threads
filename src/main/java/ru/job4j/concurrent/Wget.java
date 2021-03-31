@@ -10,7 +10,7 @@ public class Wget {
                            Thread.sleep(1000);
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                 }
                 );
