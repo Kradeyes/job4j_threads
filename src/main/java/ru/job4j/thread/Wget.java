@@ -8,7 +8,6 @@ import java.net.URL;
 public class Wget implements Runnable {
     private final String url;
     private final long speed;
-    private final byte[] dataBuffer = new byte[1024];
     private static final String OUTPUT_FILE_NAME = "./pom_temp.xml";
 
     public Wget(String url, long speed) {
@@ -21,6 +20,7 @@ public class Wget implements Runnable {
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
              FileOutputStream fileOutputStream = new FileOutputStream(OUTPUT_FILE_NAME)) {
             int bytesRead;
+            byte[] dataBuffer = new byte[(int) speed];
             long startTime = System.currentTimeMillis();
             while ((bytesRead = in.read(dataBuffer, 0, dataBuffer.length)) != -1) {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
