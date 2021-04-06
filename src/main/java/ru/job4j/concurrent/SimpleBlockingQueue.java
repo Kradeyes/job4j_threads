@@ -11,10 +11,13 @@ public class SimpleBlockingQueue<T> {
 
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
-    private final int size;
+    private int size = 5;
 
     public SimpleBlockingQueue(int size) {
         this.size = size;
+    }
+
+    public SimpleBlockingQueue() {
     }
 
     public synchronized void offer(T value) throws InterruptedException {
