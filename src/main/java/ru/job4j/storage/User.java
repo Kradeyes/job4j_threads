@@ -19,18 +19,6 @@ public class User {
         return amount;
     }
 
-    public User setId(int id) {
-        return new User(id, amount);
-    }
-
-    public User setAmount(int amount) {
-        return new User(id, amount);
-    }
-
-    public static User of(User user) {
-        return new User(user.id, user.amount);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
