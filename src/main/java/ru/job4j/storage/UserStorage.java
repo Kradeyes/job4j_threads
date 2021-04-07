@@ -6,7 +6,7 @@ import net.jcip.annotations.ThreadSafe;
 
 @ThreadSafe
 public class UserStorage {
-    final Map<Integer, User> storage = new ConcurrentHashMap<>();
+    private final Map<Integer, User> storage = new ConcurrentHashMap<>();
 
     public final synchronized boolean add(User user) {
         return storage.putIfAbsent(user.getId(), user) != null;
