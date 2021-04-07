@@ -11,7 +11,7 @@ public class ThreadPool {
     private final SimpleBlockingQueue<Runnable> tasks = new SimpleBlockingQueue<>();
 
     public void init() {
-    for (int i = 0; i < size ;i++) {
+    for (int i = 0; i < size; i++) {
         try {
             threads.add(new Thread(tasks.poll()));
         } catch (Exception e) {

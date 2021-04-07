@@ -9,7 +9,7 @@ public class CASCount {
     private final AtomicReference<Integer> count;
 
     public CASCount(int value) {
-        this. count = new AtomicReference<>(value);
+        this.count = new AtomicReference<>(value);
     }
 
     public void increment() {
