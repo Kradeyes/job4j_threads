@@ -24,14 +24,5 @@ public class ParseFile {
         }
         return content.toString();
     }
-
-
-    public synchronized void saveContent(String content) {
-        try (PrintStream printer = new PrintStream(file)) {
-            printer.print(content);
-        } catch (IOException ioEx) {
-            ioEx.printStackTrace();
-        }
-    }
 }
 
