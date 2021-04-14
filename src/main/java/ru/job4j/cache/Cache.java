@@ -20,9 +20,6 @@ public class Cache {
     }
 
     public void delete(Base model) {
-        if (model.getVersion() != memory.get(model.getId()).getVersion()) {
-            throw new OptimisticException("Concurrent version modification");
-        }
         memory.remove(model.getId());
     }
 
