@@ -12,13 +12,17 @@ public class ThreadPool {
 
     public void init() {
     for (int i = 0; i < size; i++) {
-        try {
-            threads.add(new Thread(tasks.poll()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        threads.get(i).start();
-    }
+            threads.add(new Thread(() -> {
+                try {
+                    while (!tasks.isEmpty()) {
+                        tasks.poll().run();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            ));}
+        threads.forEach(Thread::start);
     }
 
     public void work(Runnable job) {
@@ -29,5 +33,21 @@ public class ThreadPool {
     for (int i = 0; i < size; i++) {
         threads.get(i).interrupt();
     }
+    }
+
+    public static void main(String[] args) {
+        ThreadPool threadPool = new ThreadPool();
+        threadPool.work(() -> {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("loading " + i);
+            }
+        });
+        threadPool.work(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("loading " + i);
+            }
+        });
+        threadPool.init();
+        threadPool.shutdown();
     }
 }
