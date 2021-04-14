@@ -21,7 +21,8 @@ public class ThreadPool {
                     e.printStackTrace();
                 }
             }
-            ));}
+            ));
+    }
         threads.forEach(Thread::start);
     }
 
