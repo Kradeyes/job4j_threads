@@ -29,16 +29,6 @@ public class CacheTest {
         assertThat(1, is(cache.get(1).getVersion()));
     }
 
-    @Test(expected = OptimisticException.class)
-    public void whenDeleteException() {
-        AtomicReference<Exception> ex = new AtomicReference<>(new Exception());
-        Cache cache = new Cache();
-        Base base1 = new Base(1, "Petr");
-        cache.add(base1);
-        cache.update(base1);
-        cache.delete(base1);
-        System.out.println(cache.get(1));
-    }
 
     @Test
     public void whenDelete() {

@@ -34,11 +34,11 @@ public class SimpleBlockingQueueTest {
         );
         consumer.start();
         producer.start();
-        producer.join();
+        consumer.join();
         assertEquals("Privet", sb.toString());
     }
 
-   /* @Test
+    @Test
     public void whenFetchAllThenGetIt() throws InterruptedException {
         final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
         final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>();
@@ -69,5 +69,6 @@ public class SimpleBlockingQueueTest {
         consumer.interrupt();
         consumer.join();
         assertThat(buffer, is(Arrays.asList(0, 1, 2, 3, 4)));
-    */
+
+    }
 }
